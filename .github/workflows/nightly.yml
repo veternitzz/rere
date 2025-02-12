@@ -7,6 +7,27 @@ on:
     workflow_dispatch:
 
 jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get current date
+    id: date
+    run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+  
+    - name: Create Release
+    id: create_release
+    uses: actions/create-release@v1
+    env:
+     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      tag_name: nightly-${{ steps.date.outputs.date }}
+      release_name: Nightly Build ${{ steps.date.outputs.date }}
+      body: Nightly build artifacts.
+
+      prerelease: true
+
   ci:
   
     strategy:
@@ -53,22 +74,6 @@ jobs:
         cargo build \
         --all-features \
         --release
-    
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-    
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: nightly-${{ steps.date.outputs.date }}
-        release_name: Nightly Build ${{ steps.date.outputs.date }}
-        body: Nightly build artifacts.
-
-        prerelease: true
 
     - name: Give Permissions
       if: matrix.host != 'windows' # Only on non-Windows
