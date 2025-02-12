@@ -32,6 +32,8 @@ jobs:
             runner-os: macos-14
             cargo-target: aarch64-apple-darwin
 
+    name: CI - ${{ matrix.name }}
+    runs-on: ${{ matrix.runner-os }}
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
