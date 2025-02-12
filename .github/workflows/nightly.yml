@@ -15,13 +15,13 @@ jobs:
         include:
           - name: Windows x86_64
             host: windows
-            runner-os: ubuntu-latest
+            runner-os: windows-latest
             arch: x86_64
             cargo-target: x86_64-pc-windows-msvc
 
           - name: Linux x86_64
             host: linux
-            runner-os: windows-latest
+            runner-os: ubuntu-latest
             arch: x86_64
             cargo-target: x86_64-unknown-linux-gnu
 
