@@ -47,7 +47,6 @@ jobs:
       uses: dtolnay/rust-toolchain@stable
       with:
           components: clippy
-          targets: ${{ matrix.cargo-target }}
 
     - name: Build
       run: |
