@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       upload-url: ${{ steps.create_release.outputs.upload_url }}
+      date: ${{ steps.date.outputs.date }}
     steps:
     - name: Get current date
       id: date
