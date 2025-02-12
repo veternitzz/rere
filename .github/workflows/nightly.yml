@@ -67,6 +67,7 @@ jobs:
         tag_name: nightly-${{ steps.date.outputs.date }}
         release_name: Nightly Build ${{ steps.date.outputs.date }}
         body: Nightly build artifacts.
+        prerelease: true
 
     - name: Give Permissions
       if: matrix.host != 'windows' # Only on non-Windows
