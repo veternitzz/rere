@@ -2,9 +2,11 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+
+defaults:
+  run:
+    shell: bash
 
 env:
   CARGO_TERM_COLOR: always
@@ -53,7 +55,6 @@ jobs:
     - name: Test
       run: |
         cargo test \
-        --lib
         --all-features \
         --target ${{ matrix.cargo-target }}
     
