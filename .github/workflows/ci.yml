@@ -47,13 +47,13 @@ jobs:
     - name: Build
       run: |
         cargo build \
-        --locked --all-features \
+        --offline --all-features \
         --target ${{ matrix.cargo-target }}
 
     - name: Test
       run: |
         cargo test \
         --lib
-        --locked --all-features \
+        --offline --all-features \
         --target ${{ matrix.cargo-target }}
     
