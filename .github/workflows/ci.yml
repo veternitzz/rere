@@ -49,7 +49,7 @@ jobs:
         --target ${{ matrix.cargo-target }}
 
     - name: Test
-    run: |
+      run: |
         cargo test \
         --lib
         --locked --all-features \
