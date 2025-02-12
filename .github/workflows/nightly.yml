@@ -15,26 +15,30 @@ jobs:
         include:
           - name: Windows x86_64
             host: windows
+            runner-os: ubuntu-latest
             arch: x86_64
             cargo-target: x86_64-pc-windows-msvc
 
           - name: Linux x86_64
             host: linux
+            runner-os: windows-latest
             arch: x86_64
             cargo-target: x86_64-unknown-linux-gnu
 
           - name: macOS x86_64
             host: macos
+            runner-os: macos-13
             arch: x86_64
             cargo-target: x86_64-apple-darwin
 
           - name: macOS aarch64
             host: macos
+            runner-os: macos-14
             arch: aarch64
             cargo-target: aarch64-apple-darwin
 
     name: Nightly - ${{ matrix.name }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner-os }}
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
@@ -49,8 +53,7 @@ jobs:
       run: |
         cargo build \
         --all-features \
-        --release \
-        --target ${{ matrix.cargo-target }}
+        --release
     
     - name: Get current date
       id: date
@@ -68,12 +71,12 @@ jobs:
 
     - name: Give Permissions
       if: matrix.host != 'windows' # Only on non-Windows
-      run: chmod +x ./target/${{ matrix.cargo-target }}/release/rere
+      run: chmod +x ./target/release/rere.exe
     
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./target/${{ matrix.cargo-target }}/release/rere.exe # Direct path to the executable
+        asset_path: ./target/release/rere.exe # Direct path to the executable
         asset_name: your-project-name-${{ matrix.host }}.exe # Name of the executable
         asset_content_type: application/octet-stream # Important for executables
