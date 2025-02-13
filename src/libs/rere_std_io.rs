@@ -5,7 +5,7 @@ use mlua_luau_scheduler::LuaSpawnExt;
 use tokio::io::{stderr, stdout, AsyncWriteExt};
 
 pub fn module(luau: &Lua) -> LuaResult<LuaTable> {
-    TableBuilder::new(lua)?
+    TableBuilder::new(luau)?
         .with_async_function("write", io_write)?
         .with_async_function("ewrite", io_ewrite)
         .build_readonly()
