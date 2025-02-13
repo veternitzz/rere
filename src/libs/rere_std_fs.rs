@@ -1,5 +1,3 @@
-use std::fmt::format;
-
 use tokio::fs;
 use mlua::prelude::*;
 use lune_utils::TableBuilder;
