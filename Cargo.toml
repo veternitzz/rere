@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-mlua = { version = "0.10", features = ["luau", "async"] }
+mlua = { version = "0.9.9", features = ["luau", "async"] }
 tokio = { version = "1.43", features = ["full"] }
 clap = "4.5"
+lune-utils = "0.1.3"
