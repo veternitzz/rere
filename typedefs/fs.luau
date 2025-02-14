@@ -25,10 +25,52 @@ local function removeDir(path: string): () end
 ]]
 local function appendFile(path: string, contents: string | buffer): () end
 
+--[[
+    Returns whether or not the file at ``path`` is set to read only.
+]]
+local function isReadOnly(path: string): boolean return nil :: any end
+
+--[[
+    Enables or disables the read only property on the file at ``path`` depending on ``readonly``.
+]]
+local function readOnly(path: string, readonly: boolean): () end
+
+--[[
+    Returns whether or not the file at ``path`` is a directory.
+]]
+local function isDir(path: string): boolean return nil :: any end
+
+--[[
+    Returns whether or not the file at ``path`` is a file.
+]]
+local function isFile(path: string): boolean return nil :: any end
+
+--[[
+    Returns the size of the file at ``path`` in bytes.
+]]
+local function size(path: string): number return nil :: any end
+
+--[[
+    Returns a table of strings with all files or directories in the directory at ``path``.
+]]
+local function readDir(path: string): {string} return nil :: any end
+
+--[[
+    Returns whether or not the file/directory at ``path`` exists.
+]]
+local function exists(path: string): boolean return nil :: any end
+
 return {
     readFile = readFile,
     writeFile = writeFile,
     removeFile = removeFile,
     removeDir = removeDir,
-    appendFile = appendFile
+    appendFile = appendFile,
+    isReadOnly = isReadOnly,
+    readOnly = readOnly,
+    isDir = isDir,
+    isFile = isFile,
+    size = size,
+    readDir = readDir,
+    exists = exists
 }
