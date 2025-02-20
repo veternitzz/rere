@@ -89,14 +89,14 @@ jobs:
       if: matrix.host != 'windows' # Only on non-Windows
       run: chmod +x ./target/release/rere
     
-    #- name: Upload Release Asset (windows)
-    #  if: matrix.host == 'windows'
-    #  uses: actions/upload-release-asset@v1
-    #  with:
-    #    upload_url: ${{ needs.create-release.outputs.upload-url }}
-    #    asset_path: ./target/release/rere.exe # Direct path to the executable
-    #    asset_name: rere-nightly-${{ needs.create-release.outputs.date }}-${{ matrix.cargo-target }}.exe # Name of the executable
-    #    asset_content_type: application/octet-stream # Important for executables
+    - name: Upload Release Asset (windows)
+      if: matrix.host == 'windows'
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ needs.create-release.outputs.upload-url }}
+        asset_path: ./target/release/rere.exe # Direct path to the executable
+        asset_name: rere-nightly-${{ needs.create-release.outputs.date }}-${{ matrix.cargo-target }}.exe # Name of the executable
+        asset_content_type: application/octet-stream # Important for executables
 
     - name: Upload Release Asset (non-windows)
       if: matrix.host != 'windows'
