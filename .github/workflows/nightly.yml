@@ -10,6 +10,10 @@ defaults:
     run:
         shell: bash
 
+
+permissions:
+  contents: write
+  
 jobs:
   create-release:
     name: Create Release
